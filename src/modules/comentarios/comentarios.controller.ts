@@ -10,20 +10,20 @@ import {
   Query,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { CreateUserDto } from './dto/create-user.dto';
-import { SearchUserDto } from './dto/search-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { UsuariosService } from './usuarios.service';
+import { ComentariosService } from './comentarios.service';
+import { CreateComentarioDto } from './dto/create-comentario.dto';
+import { SearchComentarioDto } from './dto/search-comentario.dto';
+import { UpdateComentarioDto } from './dto/update-comentario.dto';
 
-@ApiTags('Usuarios')
-@Controller('usuarios')
-export class UsuariosController {
-  constructor(private readonly service: UsuariosService) {}
+@ApiTags('Comentarios')
+@Controller('comentarios')
+export class ComentariosController {
+  constructor(private readonly service: ComentariosService) {}
 
   @Post()
   create(
     @Body()
-    dto: CreateUserDto,
+    dto: CreateComentarioDto,
   ) {
     return this.service.create(dto);
   }
@@ -31,7 +31,7 @@ export class UsuariosController {
   @Get()
   findAll(
     @Query()
-    search: SearchUserDto,
+    search: SearchComentarioDto,
   ) {
     return this.service.findAll(search);
   }
@@ -55,7 +55,7 @@ export class UsuariosController {
     id: string,
 
     @Body()
-    dto: UpdateUserDto,
+    dto: UpdateComentarioDto,
   ) {
     return this.service.update(id, dto);
   }
@@ -66,7 +66,7 @@ export class UsuariosController {
     id: string,
 
     @Body()
-    dto: UpdateUserDto,
+    dto: UpdateComentarioDto,
   ) {
     return this.service.partialUpdate(id, dto);
   }

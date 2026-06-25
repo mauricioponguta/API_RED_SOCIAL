@@ -10,20 +10,20 @@ import {
   Query,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { CreateUserDto } from './dto/create-user.dto';
-import { SearchUserDto } from './dto/search-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { UsuariosService } from './usuarios.service';
+import { CreateSeguidorDto } from './dto/create-seguidor.dto';
+import { SearchSeguidorDto } from './dto/search-seguidor.dto';
+import { UpdateSeguidorDto } from './dto/update-seguidor.dto';
+import { SeguidoresService } from './seguidores.service';
 
-@ApiTags('Usuarios')
-@Controller('usuarios')
-export class UsuariosController {
-  constructor(private readonly service: UsuariosService) {}
+@ApiTags('Seguidores')
+@Controller('seguidores')
+export class SeguidoresController {
+  constructor(private readonly service: SeguidoresService) {}
 
   @Post()
   create(
     @Body()
-    dto: CreateUserDto,
+    dto: CreateSeguidorDto,
   ) {
     return this.service.create(dto);
   }
@@ -31,7 +31,7 @@ export class UsuariosController {
   @Get()
   findAll(
     @Query()
-    search: SearchUserDto,
+    search: SearchSeguidorDto,
   ) {
     return this.service.findAll(search);
   }
@@ -39,6 +39,22 @@ export class UsuariosController {
   @Get('inactivos')
   findInactive() {
     return this.service.findInactive();
+  }
+
+  @Get('usuario/:usuarioId/seguidores')
+  findFollowers(
+    @Param('usuarioId')
+    usuarioId: string,
+  ) {
+    return this.service.findFollowers(usuarioId);
+  }
+
+  @Get('usuario/:usuarioId/siguiendo')
+  findFollowing(
+    @Param('usuarioId')
+    usuarioId: string,
+  ) {
+    return this.service.findFollowing(usuarioId);
   }
 
   @Get(':id')
@@ -55,7 +71,7 @@ export class UsuariosController {
     id: string,
 
     @Body()
-    dto: UpdateUserDto,
+    dto: UpdateSeguidorDto,
   ) {
     return this.service.update(id, dto);
   }
@@ -66,7 +82,7 @@ export class UsuariosController {
     id: string,
 
     @Body()
-    dto: UpdateUserDto,
+    dto: UpdateSeguidorDto,
   ) {
     return this.service.partialUpdate(id, dto);
   }

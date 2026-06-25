@@ -5,18 +5,18 @@ import {
   IsString,
 } from 'class-validator';
 
-export class SearchUserDto {
+export class SearchComentarioDto {
   @IsString()
   @IsOptional()
-  nombre?: string;
-
-  @IsString()
-  @IsOptional()
-  correo?: string;
+  comentario?: string;
 
   @IsMongoId()
   @IsOptional()
-  rol_id?: string;
+  publicacion_id?: string;
+
+  @IsMongoId()
+  @IsOptional()
+  usuario_id?: string;
 
   @IsNumberString()
   @IsOptional()
