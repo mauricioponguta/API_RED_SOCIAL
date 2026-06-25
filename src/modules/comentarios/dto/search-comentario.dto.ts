@@ -5,10 +5,14 @@ import {
   IsString,
 } from 'class-validator';
 
-export class SearchPublicacionDto {
+export class SearchComentarioDto {
   @IsString()
   @IsOptional()
-  contenido?: string;
+  comentario?: string;
+
+  @IsMongoId()
+  @IsOptional()
+  publicacion_id?: string;
 
   @IsMongoId()
   @IsOptional()

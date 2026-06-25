@@ -1,12 +1,28 @@
-import { IsOptional } from "class-validator";
+import {
+  IsMongoId,
+  IsNumberString,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 
-export class SearchUserDto{
-    @IsOptional()
-    nombre?: string;
+export class SearchUserDto {
+  @IsString()
+  @IsOptional()
+  nombre?: string;
 
-    @IsOptional()
-    page?: number;
+  @IsString()
+  @IsOptional()
+  correo?: string;
 
-    @IsOptional()
-    limit?: number;
+  @IsMongoId()
+  @IsOptional()
+  rol_id?: string;
+
+  @IsNumberString()
+  @IsOptional()
+  page?: string;
+
+  @IsNumberString()
+  @IsOptional()
+  limit?: string;
 }

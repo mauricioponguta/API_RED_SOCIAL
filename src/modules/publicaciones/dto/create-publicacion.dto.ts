@@ -1,10 +1,10 @@
-import { IsMongoId, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsMongoId, IsNotEmpty, IsString } from 'class-validator';
 
 import { ApiProperty } from '@nestjs/swagger';
 
 export class CreatePublicacionDto {
   @ApiProperty({
-    example: '6678f6b5b46fbd8c12345678',
+    example: '6a39a03e526922e4c047cfea',
   })
   @IsMongoId()
   @IsNotEmpty()
@@ -16,12 +16,4 @@ export class CreatePublicacionDto {
   @IsString()
   @IsNotEmpty()
   contenido!: string;
-
-  @ApiProperty({
-    example: 'https://imagenes.com/publicacion.jpg',
-    required: false,
-  })
-  @IsString()
-  @IsOptional()
-  imagen?: string;
 }

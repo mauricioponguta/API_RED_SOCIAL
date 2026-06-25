@@ -1,16 +1,21 @@
-import { Test, TestingModule } from '@nestjs/testing';
 import { getModelToken } from '@nestjs/mongoose';
-import { PublicacionesService } from './publicaciones.service';
-import { Publicacion } from './schemas/publicacion.schema';
+import { Test, TestingModule } from '@nestjs/testing';
+import { Publicacion } from '../publicaciones/schemas/publicacion.schema';
 import { User } from '../usuarios/schemas/user.schema';
+import { ComentariosService } from './comentarios.service';
+import { Comentario } from './schemas/comentario.schema';
 
-describe('PublicacionesService', () => {
-  let service: PublicacionesService;
+describe('ComentariosService', () => {
+  let service: ComentariosService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        PublicacionesService,
+        ComentariosService,
+        {
+          provide: getModelToken(Comentario.name),
+          useValue: {},
+        },
         {
           provide: getModelToken(Publicacion.name),
           useValue: {},
@@ -22,7 +27,7 @@ describe('PublicacionesService', () => {
       ],
     }).compile();
 
-    service = module.get<PublicacionesService>(PublicacionesService);
+    service = module.get<ComentariosService>(ComentariosService);
   });
 
   it('should be defined', () => {

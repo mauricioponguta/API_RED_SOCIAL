@@ -1,27 +1,29 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 
-export type PublicacionDocument = Publicacion & Document;
+export type SeguidorDocument = Seguidor & Document;
 
 @Schema({
-  collection: 'publicaciones',
+  collection: 'seguidores',
   timestamps: {
     createdAt: 'fecha_creacion',
     updatedAt: 'fecha_modificacion',
   },
 })
-export class Publicacion {
+export class Seguidor {
   @Prop({
     required: true,
     type: Types.ObjectId,
     ref: 'User',
   })
-  usuario_id!: Types.ObjectId;
+  seguidor_id!: Types.ObjectId;
 
   @Prop({
     required: true,
+    type: Types.ObjectId,
+    ref: 'User',
   })
-  contenido!: string;
+  seguido_id!: Types.ObjectId;
 
   @Prop({
     default: true,
@@ -29,4 +31,4 @@ export class Publicacion {
   activo!: boolean;
 }
 
-export const PublicacionSchema = SchemaFactory.createForClass(Publicacion);
+export const SeguidorSchema = SchemaFactory.createForClass(Seguidor);
